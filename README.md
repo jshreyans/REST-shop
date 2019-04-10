@@ -8,7 +8,7 @@ The API uses MongoDB(Atlas). For a detailed guide on how to connect to a Mongo d
 #### Setup:
 1. Clone and cd into the repo directory
 2. Run `npm install`
-3. Create a `nodemon.json` file in the parent folder and set your Mongo Atlas Admin Credentials as below:
+3. Create a `nodemon.json` file in the parent folder and set your Mongo Atlas User Credentials as below:
   ``` 
   {
     "env": {
