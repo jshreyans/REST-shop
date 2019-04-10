@@ -45,37 +45,29 @@ router.post('/', (req, res, next) => {
             product: req.body.productID,
             quantity: req.body.quantity
         });
-        order
-            .save()
-            .then(result => {
-                console.log(result);
-                res.status(201).json({
-                    message: 'Order stored',
-                    createdOrder: {
-                        _id: result._id,
-                        product: result.product,
-                        quantity: result.quantity
-                    },
-                    request: {
-                        type: 'GET',
-                        url: 'https://localhost/3600.orders' + doc._id
-                    }
-                });
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json({
-                    error: err
-                });
-            })
+        return order.save();
+    })
+    .then(result => {
+        console.log(result);
+        res.status(201).json({
+            message: 'Order stored',
+            createdOrder: {
+                _id: result._id,
+                product: result.product,
+                quantity: result.quantity
+            },
+            request: {
+                type: 'GET',
+                url: 'https://localhost/3600.orders' + doc._id
+            }
+        });
     })
     .catch(err => {
         console.log(err);
-        res.statud(500).json({
+        res.status(500).json({
             error: err
-        })
+        });
     })
-    
 });
 
 router.get('/:orderID', (req, res, next) => {
