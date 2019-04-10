@@ -16,4 +16,3 @@ The API uses MongoDB(Atlas). For a detailed guide on how to connect to a Mongo d
     }
   }
   ```
-  4. Your API is live at `localhost:3600`
