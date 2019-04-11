@@ -6,9 +6,6 @@ const Order = require('../models/order');
 const Product = require('../models/product');
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Orders were fetched',
-    });
     Order.find()
     .select('product quantity _id')
     .populate('product', 'name')
@@ -47,7 +44,7 @@ router.post('/', (req, res, next) => {
             })
         }
         const order = new Order({
-            _id: mongoose.Types.ObjectId,
+            _id: mongoose.Types.ObjectId(),
             product: req.body.productID,
             quantity: req.body.quantity
         });
@@ -64,7 +61,7 @@ router.post('/', (req, res, next) => {
             },
             request: {
                 type: 'GET',
-                url: 'https://localhost/3600.orders' + doc._id
+                url: 'https://localhost/3600.orders' + result._id
             }
         });
     })
@@ -101,7 +98,7 @@ router.get('/:orderID', (req, res, next) => {
     });
 });
 
-router.delete('/', (req, res, next) => {
+router.delete('/:orderId', (req, res, next) => {
     Order.remove({ _id: req.params.orderId })
     .exec()
     .then(result => {

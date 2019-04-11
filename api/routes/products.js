@@ -4,10 +4,10 @@ const mongoose = require("mongoose");
 const multer = require('multer');
 
 const storage = multer.diskStorage({
-  destination: function(res, file, cb) {
+  destination: function(req, file, cb) {
     cb(null, './uploads/');
   },
-  filename: function(res, file, cb) {
+  filename: function(req, file, cb) {
     cb(ull, new Date().toISOString() + file.originalname);
   }
 });
@@ -19,9 +19,13 @@ const fileFilter = (req,file,cb) => {
     cb(null, false);
 }
 
-const upload= multer({storage: storage, limits: {
-  fileSize: 1024 * 1024 *5,
-}});
+const upload= multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 *5,
+  },
+  fileFilter: fileFilter
+});
 
 const Product = require("../models/product");
 
@@ -58,7 +62,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", upload.single('productImage'),(req, res, next) => {
-  console.log(req.file);
+  // console.log(req.file);
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -82,7 +86,7 @@ router.post("/", upload.single('productImage'),(req, res, next) => {
         }
       });
     })
-    .catch(err => {
+    .catch(err => {product
       console.log(err);
       res.status(500).json({
         error: err
