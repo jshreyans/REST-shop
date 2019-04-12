@@ -1,9 +1,9 @@
-const Order = require('../models/order');
+const Orders = require('../models/order');
 const Product = require('../models/product');
 const mongoose = require('mongoose');
 
 exports.orders_get_all = (req, res, next) => {
-    Order.find()
+    Orders.find()
     .select('product quantity _id')
     .populate('product', 'name')
     .exec()

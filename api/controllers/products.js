@@ -140,4 +140,3 @@ exports.get_all_products = (req, res, next) => {
         });
       });
   }
-
