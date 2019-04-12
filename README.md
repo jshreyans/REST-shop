@@ -31,8 +31,8 @@ It uses MongoDB(Atlas) as the database. For a detailed guide on how to connect t
     - Responses expected:
       - Create a new order
       - Fetch all existing orders
-      - (/orders/:orderID) Delete an existing order by id
-      - (/orders/:orderID)  Fetch order by id 
+      - `(/orders/:orderID)` Delete an existing order by id
+      - `(/orders/:orderID)`  Fetch order by id 
       
 3. `/user`
     - Uses [bcrypt](https://www.npmjs.com/package/bcrypt) and [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) to authenticate user signup and login
