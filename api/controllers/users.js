@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const User = require('..//models/user');
+const User = require('../models/user');
 
 exports.user_signup = (req,res,next) => {
     User.find({email: req.body.email})
