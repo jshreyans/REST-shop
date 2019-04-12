@@ -18,17 +18,21 @@ It uses MongoDB(Atlas) as the database. For a detailed guide on how to connect t
   ```
 ## Endpoints:
 1. `/products`
+    - Uses [multer](https://www.npmjs.com/package/multer) to handle image upload
+    - Create/delete/patch methods all require authentication
     - Responses expected:
       - Create a new product
-      - Display all existing products with a count
+      - Display all existing products with a count or specific product by id
       - Delete a product by its id
       - Update details of existing product
       
 2. `/orders`
+    - All features require authentication from signed up user
     - Responses expected:
       - Create a new order
-      - Delete an existing order by id
       - Fetch all existing orders
+      - (/orders/:orderID) Delete an existing order by id
+      - (/orders/:orderID)  Fetch order by id 
       
 3. `/user`
     - Uses [bcrypt](https://www.npmjs.com/package/bcrypt) and [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) to authenticate user signup and login
